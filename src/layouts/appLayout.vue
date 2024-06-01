@@ -1,5 +1,14 @@
 <script setup>
-import { RouterView, RouterLink} from 'vue-router';
+import { onMounted, ref } from 'vue';
+import useUserStore from '@/store/userStore'
+
+const userStore = useUserStore()
+const user = ref({})
+
+onMounted(()=>{
+  user.value = userStore.user.value
+})
+
 </script>
 
 <template>
@@ -17,6 +26,7 @@ import { RouterView, RouterLink} from 'vue-router';
         </li>
       </ul>
     </div>
+    <div class="">{{ user.name }}</div>
   </div>
 </nav>
     </header>

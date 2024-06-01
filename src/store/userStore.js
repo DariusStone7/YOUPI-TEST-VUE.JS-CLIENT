@@ -2,12 +2,8 @@ import { defineStore } from "pinia";
 import { getSingle, postSIngle } from "@/services/axios";
 import { ref } from "vue";
 
-const userStore = defineStore('user', () => {
-    const user = ref({
-        int:id,
-        string:name,
-        string:email,
-    });
+const userStore = defineStore('users', () => {
+    const user = ref({});
 
     function register(data){
         return postSIngle('/user/register', data) 

@@ -1,11 +1,14 @@
 <script setup>
 import useTaskStore from '@/store/taskStore'
 import { onMounted, ref } from 'vue'
-
+import useUserStore from '@/store/userStore'
 
 
 const taskStore = useTaskStore()
-const tasks = ref([])
+const userStore = useUserStore()
+
+let tasks = ref([])
+
 const task = ref({
     title : '',
     description: '',
@@ -16,14 +19,15 @@ const task = ref({
 onMounted(() => {
     taskStore.tasksList()
         .then((response) => {
-            console.log(response)
-            taskStore.tasks.value = response.data
-            tasks.value = taskStore.tasks.value
-            console.log(taskStore.tasks.value)
+
+            taskStore.tasks.value = response.data.tasks
+            tasks.value = response.data.tasks
         })
         .catch((errors) => {
             console.log(errors)
         })
+        console.log('aaaaaaaaaaaaaaaaaaaaaaa ', tasks.value)
+        
 })
 
 </script>
